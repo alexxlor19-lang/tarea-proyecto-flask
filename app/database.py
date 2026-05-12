@@ -7,7 +7,10 @@ def get_db_connection():
         g.db.row_factory = sqlite3.Row
     return g.db
 
-def close_db_connection(exception=None):
-    db = g.pop('db', None)
-    if db is not None:
-        db.close()
+# app/models.py
+
+# Simulación de base de datos en memoria
+users_db = [
+    {"id": 1, "username": "jorge", "email": "jorge@example.com", "password": "123"},
+    {"id": 2, "username": "pepe", "email": "pepe@example.com", "password": "456"}
+]
