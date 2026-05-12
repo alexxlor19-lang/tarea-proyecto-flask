@@ -29,3 +29,31 @@ def create_user():
     }
     users_db.append(new_user)
     return jsonify(new_user), 201
+
+# PUT /users/<id> - Actualizar datos
+@user_bp.route('/users/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    data = request.get_json()
+    user = next((u for u in users_db if u['id'] == user_id), None)
+    
+    if not user:
+        return jsonify({"message": "Usuario no encontrado"}), 404
+
+    # Actualizamos solo los campos que vengan en el JSON
+    user['username'] = data.get('username', user['username'])
+    user['email'] = data.get('email', user['email'])
+    user['password'] = data.get('password', user['password'])
+    
+    return jsonify(user), 200
+
+# DELETE /users/<id> - Eliminar del sistema
+@user_bp.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    global users_db
+    user = next((u for u in users_db if u['id'] == user_id), None)
+    
+    if not user:
+        return jsonify({"message": "Usuario no encontrado"}), 404
+
+    users_db = [u for u in users_db if u['id'] != user_id]
+    return jsonify({"message": "Usuario eliminado correctamente"}), 200
