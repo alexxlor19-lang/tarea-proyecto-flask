@@ -13,4 +13,7 @@ def get_db_connection():
 users_db = [
     {"id": 1, "username": "jorge", "email": "jorge@example.com", "password": "123"},
     {"id": 2, "username": "pepe", "email": "pepe@example.com", "password": "456"}
+    {"id": 1, "username": "Alex", "email": "alex@example.com", "password": "789"},
+    {"id": 2, "username": "Juan", "email": "juan@example.com", "password": "987"}{"id": 1, "username": "jorge", "email": "jorge@example.com", "password": "123"},
+    {"id": 2, "username": "Pedro", "email": "pedro@example.com", "password": "654"}
 ]
